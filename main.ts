@@ -4,15 +4,19 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
     }
 })
 scene.onOverlapTile(SpriteKind.Player, assets.tile`我的貼圖1`, function (sprite, location) {
-    game.over(true, effects.starField)
+    leval += 1
+})
+scene.onOverlapTile(SpriteKind.Player, assets.tile`我的貼圖10`, function (sprite, location) {
+    game.over(true)
 })
 scene.onOverlapTile(SpriteKind.Player, assets.tile`我的貼圖0`, function (sprite, location) {
-    game.over(false, effects.melt)
+    tiles.placeOnRandomTile(user, sprites.dungeon.collectibleInsignia)
 })
 controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
-    user.vy = -175
+    leval += 1
 })
 let user: Sprite = null
+let leval = 0
 scene.setBackgroundColor(9)
 user = sprites.create(img`
     . . . . . . . . . . . . . . . . 
@@ -37,3 +41,11 @@ tiles.setCurrentTilemap(tilemap`層級1`)
 scene.cameraFollowSprite(user)
 tiles.placeOnRandomTile(user, sprites.dungeon.collectibleInsignia)
 user.ay = 350
+forever(function () {
+    if (leval == 1) {
+        leval = 2
+        tiles.placeOnRandomTile(user, sprites.dungeon.collectibleInsignia)
+        scene.setBackgroundColor(10)
+        tiles.setCurrentTilemap(tilemap`層級3`)
+    }
+})

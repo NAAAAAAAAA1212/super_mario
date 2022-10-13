@@ -1,3 +1,6 @@
+scene.onOverlapTile(SpriteKind.Player, assets.tile`我的貼圖11`, function (sprite, location) {
+    tiles.placeOnRandomTile(user, sprites.dungeon.collectibleInsignia)
+})
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
     if (user.vy == 0) {
         user.vy = -175
@@ -14,6 +17,9 @@ scene.onOverlapTile(SpriteKind.Player, assets.tile`我的貼圖0`, function (spr
 })
 controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
     leval += 1
+})
+scene.onOverlapTile(SpriteKind.Player, assets.tile`我的貼圖15`, function (sprite, location) {
+    tiles.placeOnRandomTile(user, sprites.dungeon.collectibleInsignia)
 })
 let user: Sprite = null
 let leval = 0
